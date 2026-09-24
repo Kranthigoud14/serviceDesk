@@ -1,0 +1,7 @@
+### Get Audit Logs (Admin only)
+GET http://localhost:5000/api/audit-logs?page=1&limit=20
+Authorization: Bearer {{token}}
+
+### Filter Audit Logs by Entity and Action
+GET http://localhost:5000/api/audit-logs?entityType=TICKET&action=TICKET_CREATED
+Authorization: Bearer {{token}}

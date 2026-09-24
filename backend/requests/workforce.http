@@ -1,0 +1,38 @@
+### ==========================================
+### 1. LOGIN AS IT MANAGER
+### ==========================================
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "itmanager@example.com",
+    "password": "123456"
+}
+
+### Copy token
+### Replace YOUR_IT_MANAGER_TOKEN below
+
+
+### ==========================================
+### 2. CHECK TECHNICIANS
+### ==========================================
+
+GET http://localhost:5000/api/technicians
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+
+### ==========================================
+### 3. GET ALL TICKETS
+### ==========================================
+
+GET http://localhost:5000/api/tickets
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+
+### ==========================================
+### 4. WORKFORCE INTELLIGENCE
+### ==========================================
+
+GET http://localhost:5000/api/workforce/recommend/TICKET_ID
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN

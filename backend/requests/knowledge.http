@@ -1,0 +1,24 @@
+### Get Categories
+GET http://localhost:5000/api/knowledge-base/categories
+Authorization: Bearer {{token}}
+
+### Get All Published Articles
+GET http://localhost:5000/api/knowledge-base?search=wifi
+Authorization: Bearer {{token}}
+
+### Create Knowledge Article (Admin / Manager)
+POST http://localhost:5000/api/knowledge-base
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Resolving Corporate Wi-Fi Authentication Errors",
+    "content": "Step 1: Disconnect from Corp-Guest\nStep 2: Install latest 802.1x security certificate\nStep 3: Connect to Corp-Secure using corporate credentials.",
+    "category": "Network",
+    "tags": ["wifi", "network", "certificate"],
+    "status": "Published"
+}
+
+### Get Article By ID
+GET http://localhost:5000/api/knowledge-base/{{articleId}}
+Authorization: Bearer {{token}}

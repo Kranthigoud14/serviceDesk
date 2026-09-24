@@ -1,0 +1,141 @@
+### ==========================================
+### SERVICE DESK PRO - TICKET TESTING
+### ==========================================
+
+
+### ==========================================
+### 1. LOGIN AS EMPLOYEE
+### ==========================================
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "employee@example.com",
+    "password": "123456"
+}
+
+### Copy employee token
+### Replace YOUR_EMPLOYEE_TOKEN below
+
+
+### ==========================================
+### 2. CREATE TICKET
+### ==========================================
+
+POST http://localhost:5000/api/tickets
+Content-Type: application/json
+Authorization: Bearer YOUR_EMPLOYEE_TOKEN
+
+{
+    "title": "Network connection problem",
+    "description": "My system is unable to connect to the office network.",
+    "category": "Network",
+    "priority": "High"
+}
+
+
+### ==========================================
+### 3. LOGIN AS IT MANAGER
+### ==========================================
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "itmanager@example.com",
+    "password": "123456"
+}
+
+### Copy IT Manager token
+### Replace YOUR_IT_MANAGER_TOKEN below
+
+
+### ==========================================
+### 4. GET ALL TICKETS
+### ==========================================
+
+GET http://localhost:5000/api/tickets
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+
+### ==========================================
+### 5. ASSIGN TICKET
+### ==========================================
+
+PUT http://localhost:5000/api/tickets/TICKET_ID/assign
+Content-Type: application/json
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+{
+    "technicianId": "TECHNICIAN_ID"
+}
+
+
+### ==========================================
+### 6. LOGIN AS TECHNICIAN
+### ==========================================
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "technician@example.com",
+    "password": "123456"
+}
+
+### Copy technician token
+### Replace YOUR_TECHNICIAN_TOKEN below
+
+
+### ==========================================
+### 7. TECHNICIAN RESOLVES TICKET
+### ==========================================
+
+PUT http://localhost:5000/api/tickets/TICKET_ID/resolve
+Content-Type: application/json
+Authorization: Bearer YOUR_TECHNICIAN_TOKEN
+
+{
+    "resolution": "Replaced the faulty network cable and restored network connectivity.",
+    "proofPhoto": "https://example.com/proof/network-repair.jpg"
+}
+
+### Copy verificationOtp from response.
+
+
+### ==========================================
+### 8. EMPLOYEE VERIFIES SERVICE
+### ==========================================
+
+PUT http://localhost:5000/api/tickets/TICKET_ID/verify-service
+Content-Type: application/json
+Authorization: Bearer YOUR_EMPLOYEE_TOKEN
+
+{
+    "otp": "123456"
+}
+
+### Replace 123456 with actual OTP.
+
+
+### ==========================================
+### 9. EMPLOYEE RATES TECHNICIAN
+### ==========================================
+
+PUT http://localhost:5000/api/tickets/TICKET_ID/rate
+Content-Type: application/json
+Authorization: Bearer YOUR_EMPLOYEE_TOKEN
+
+{
+    "rating": 5,
+    "comment": "The technician resolved the issue quickly and explained the solution clearly."
+}
+
+
+### ==========================================
+### 10. CHECK FINAL TICKET
+### ==========================================
+
+GET http://localhost:5000/api/tickets/TICKET_ID
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN

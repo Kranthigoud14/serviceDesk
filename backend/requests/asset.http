@@ -1,0 +1,80 @@
+### ==========================================
+### 1. CREATE ASSET
+### ==========================================
+
+POST http://localhost:5000/api/assets
+Content-Type: application/json
+Authorization: Bearer YOUR_ASSET_MANAGER_TOKEN
+
+{
+    "name": "Dell Latitude 5440",
+    "type": "Laptop",
+    "assetTag": "AST-LAP-001",
+    "serialNumber": "DL5440SN001",
+    "brand": "Dell",
+    "model": "Latitude 5440",
+    "purchaseDate": "2026-01-15",
+    "warrantyExpiry": "2029-01-15",
+    "description": "Company laptop assigned for employee use"
+}
+
+
+### ==========================================
+### 2. GET ALL ASSETS
+### ==========================================
+
+GET http://localhost:5000/api/assets
+Authorization: Bearer YOUR_ASSET_MANAGER_TOKEN
+
+
+### ==========================================
+### 3. GET ASSET BY ID
+### ==========================================
+
+GET http://localhost:5000/api/assets/ASSET_ID
+Authorization: Bearer YOUR_ASSET_MANAGER_TOKEN
+
+
+### ==========================================
+### 4. UPDATE ASSET
+### ==========================================
+
+PUT http://localhost:5000/api/assets/ASSET_ID
+Content-Type: application/json
+Authorization: Bearer YOUR_ASSET_MANAGER_TOKEN
+
+{
+    "brand": "Dell",
+    "model": "Latitude 5440",
+    "status": "Under Maintenance",
+    "description": "Laptop sent for hardware maintenance"
+}
+
+
+### ==========================================
+### 5. ASSIGN ASSET
+### ==========================================
+
+PUT http://localhost:5000/api/assets/ASSET_ID/assign
+Content-Type: application/json
+Authorization: Bearer YOUR_ASSET_MANAGER_TOKEN
+
+{
+    "userId": "EMPLOYEE_USER_ID"
+}
+
+
+### ==========================================
+### 6. UNASSIGN ASSET
+### ==========================================
+
+PUT http://localhost:5000/api/assets/ASSET_ID/unassign
+Authorization: Bearer YOUR_ASSET_MANAGER_TOKEN
+
+
+### ==========================================
+### 7. DELETE ASSET
+### ==========================================
+
+DELETE http://localhost:5000/api/assets/ASSET_ID
+Authorization: Bearer YOUR_SYSTEM_ADMIN_TOKEN

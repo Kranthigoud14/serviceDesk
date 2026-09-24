@@ -1,0 +1,35 @@
+### Summarize Ticket
+POST http://localhost:5000/api/ai/summarize
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "VPN client disconnects repeatedly during video conference calls",
+    "description": "Whenever Teams or Zoom starts a meeting, Cisco AnyConnect drops with error 412. User has rebooted router twice.",
+    "category": "Network"
+}
+
+### Classify Ticket Category and Priority
+POST http://localhost:5000/api/ai/classify
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Finance database server inaccessible after power surge",
+    "description": "Entire accounting team cannot process end-of-month payroll. Critical blocker."
+}
+
+### Suggest Resolution Steps
+POST http://localhost:5000/api/ai/suggest-resolution
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Outlook continuously prompting for password",
+    "description": "Employee cannot open mailbox, repeated MFA prompts.",
+    "category": "Email"
+}
+
+### Get Ticket Insights
+GET http://localhost:5000/api/ai/insights/{{ticketId}}
+Authorization: Bearer {{token}}

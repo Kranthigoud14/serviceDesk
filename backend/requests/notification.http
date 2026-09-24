@@ -1,0 +1,2 @@
+GET http://localhost:5000/api/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YWIzNWEwM2FiN2YwYjcwMzM4MTZhOGEiLCJyb2xlIjoiSVQgTWFuYWdlciIsImlhdCI6MTc5MDE1MDEwMSwiZXhwIjoxNzkwMjM2NTAxfQ.yNqdi_a9K0pPDeQHxqr-ABld_cl5_2bxW8y8wku-kQ8

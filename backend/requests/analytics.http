@@ -1,0 +1,15 @@
+### Get Overview Analytics
+GET http://localhost:5000/api/analytics/overview?timeframe=30
+Authorization: Bearer {{token}}
+
+### Get Ticket Creation & Resolution Trends
+GET http://localhost:5000/api/analytics/trends?days=14
+Authorization: Bearer {{token}}
+
+### Get Technician Utilization & Performance
+GET http://localhost:5000/api/analytics/technicians
+Authorization: Bearer {{token}}
+
+### Get Asset Distribution & Warranty Status
+GET http://localhost:5000/api/analytics/assets
+Authorization: Bearer {{token}}

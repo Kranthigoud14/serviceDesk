@@ -1,0 +1,274 @@
+### ==============================
+### USER APIs
+### ==============================
+
+
+### 1. GET ALL USERS
+GET http://localhost:5000/api/users
+
+
+### 2. GET USER BY ID
+### Replace USER_ID with an actual MongoDB user ID
+GET http://localhost:5000/api/users/6a9936d07d01a0c123255d4a
+
+
+### 3. UPDATE USER NAME
+### Replace USER_ID with an actual MongoDB user ID
+PUT http://localhost:5000/api/users/6a9936d07d01a0c123255d4a
+Content-Type: application/json
+
+{
+    "name": "Kranthi Goud"
+}
+
+
+### 4. DELETE USER
+### Replace USER_ID with an actual MongoDB user ID
+DELETE http://localhost:5000/api/users/6a9becdacf1bdbae2e937994
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWViNGNmMWJkYmFlMmU5Mzc5OTYiLCJyb2xlIjoiSVQgTWFuYWdlciIsImlhdCI6MTc4ODYwNDEwMCwiZXhwIjoxNzg4NjkwNTAwfQ.l61c4kji_JGA-f3A3-OWMMC_Y5XTRjfju4jdrgXGBJc
+
+### ========================================== ### TEST 2 — SYSTEM ADMIN LOGIN ### ========================================== 
+POST http://localhost:5000/api/auth/login 
+Content-Type: application/json 
+
+{ "email": "kranthi@admin.com", 
+"password": "123456"
+ }
+
+### ==========================================
+### TEST 3 — SYSTEM ADMIN GET ALL USERS
+### ==========================================
+
+GET http://localhost:5000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWNkYWNmMWJkYmFlMmU5Mzc5OTQiLCJyb2xlIjoiU3lzdGVtIEFkbWluIiwiaWF0IjoxNzg4NjAzNjUyLCJleHAiOjE3ODg2OTAwNTJ9.GhT2i1R2nqVUbWhKRPX6rlJgOlINkJiiGkRvIYdq4FA
+
+
+### ==========================================
+### TEST 4 — IT MANAGER LOGIN
+### ==========================================
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "ITManager@admin.com",
+    "password": "123456"
+}
+
+
+### ==========================================
+### TEST 5 — IT MANAGER GET ALL USERS
+### Expected: 200 OK
+### ==========================================
+
+GET http://localhost:5000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWNkYWNmMWJkYmFlMmU5Mzc5OTQiLCJyb2xlIjoiU3lzdGVtIEFkbWluIiwiaWF0IjoxNzg4NjA0MDExLCJleHAiOjE3ODg2OTA0MTF9.mBuC4qw1RrgeA8dM-xhogPrZl9-tA76yB1z8o61ORW4
+
+### ==========================================
+### TEST 6 — TECHNICIAN GET ALL USERS
+### Expected: 403 Forbidden
+### ==========================================
+
+GET http://localhost:5000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWY0M2NmMWJkYmFlMmU5Mzc5OTciLCJyb2xlIjoiVGVjaG5pY2lhbiIsImlhdCI6MTc4ODYwNDI0OSwiZXhwIjoxNzg4NjkwNjQ5fQ.OoZMQIsZarXz3D-Lr4tNuPy3h40klB5WPeFobuEEEzY
+
+
+### ==========================================
+### TEST 7 — EMPLOYEE GET ALL USERS
+### Expected: 403 Forbidden
+### ==========================================
+
+GET http://localhost:5000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWZlNWNmMWJkYmFlMmU5Mzc5OTgiLCJyb2xlIjoiRW1wbG95ZWUiLCJpYXQiOjE3ODg2MDQzOTcsImV4cCI6MTc4ODY5MDc5N30.6XUzNi13YS1j6v1Zb9OHF1ApuS37ZDzztm2Ahi3IGHk
+
+
+### ==========================================
+### TEST 8 — ASSET MANAGER GET ALL USERS
+### Expected: 403 Forbidden
+### ==========================================
+
+GET http://localhost:5000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZjAzYWNmMWJkYmFlMmU5Mzc5OTkiLCJyb2xlIjoiQXNzZXQgTWFuYWdlciIsImlhdCI6MTc4ODYwNDQ4NSwiZXhwIjoxNzg4NjkwODg1fQ.yBTG9eRGcr_iI1-t82xIc0BwSzNOS02xRuAuo-Xww0A
+
+
+### ==========================================
+### TEST 9 — EMPLOYEE UPDATE OWN PROFILE
+### Expected: 200 OK
+### ==========================================
+
+PUT http://localhost:5000/api/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWZlNWNmMWJkYmFlMmU5Mzc5OTgiLCJyb2xlIjoiRW1wbG95ZWUiLCJpYXQiOjE3ODg2MDQ2MzgsImV4cCI6MTc4ODY5MTAzOH0.V3Lfe61mB9LIZgdFSKGS3HpIbCfZQLGibzh4u0KrQOc
+Content-Type: application/json
+
+{
+    "name": "Kranthi Goud"
+}
+
+### ==========================================
+### TEST 10 — TECHNICIAN UPDATE OWN PROFILE
+### Expected: 200 OK
+### ==========================================
+
+PUT http://localhost:5000/api/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWY0M2NmMWJkYmFlMmU5Mzc5OTciLCJyb2xlIjoiVGVjaG5pY2lhbiIsImlhdCI6MTc4ODYwNDI0OSwiZXhwIjoxNzg4NjkwNjQ5fQ.OoZMQIsZarXz3D-Lr4tNuPy3h40klB5WPeFobuEEEzY
+Content-Type: application/json
+
+{
+    "name": "Technician Updated"
+}
+
+### ==========================================
+### TEST 11 — EMPLOYEE UPDATES ANOTHER USER
+### Expected: 403 Forbidden
+### ==========================================
+
+PUT http://localhost:5000/api/users/6a9bef43cf1bdbae2e937997
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWZlNWNmMWJkYmFlMmU5Mzc5OTgiLCJyb2xlIjoiRW1wbG95ZWUiLCJpYXQiOjE3ODg2MDQzOTcsImV4cCI6MTc4ODY5MDc5N30.6XUzNi13YS1j6v1Zb9OHF1ApuS37ZDzztm2Ahi3IGHk
+Content-Type: application/json
+
+{
+    "name": "Hacked Technician"
+}
+### 
+PUT http://localhost:5000/api/users/6a9befe5cf1bdbae2e937998
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWNkYWNmMWJkYmFlMmU5Mzc5OTQiLCJyb2xlIjoiU3lzdGVtIEFkbWluIiwiaWF0IjoxNzg4NjA1NjkyLCJleHAiOjE3ODg2OTIwOTJ9.IGyLXMHaFh0Po0wOzGkTZTT-J9u0B-Py-zBbq9qSGJ8
+Content-Type: application/json
+
+{
+    "name": "Updated By Admin"
+}
+
+### ==========================================
+### TEST 13 — IT MANAGER UPDATES ANOTHER USER
+### Expected: 403 Forbidden
+### ==========================================
+
+PUT http://localhost:5000/api/users/6a9befe5cf1bdbae2e937998
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWViNGNmMWJkYmFlMmU5Mzc5OTYiLCJyb2xlIjoiSVQgTWFuYWdlciIsImlhdCI6MTc4ODYwNTgxMywiZXhwIjoxNzg4NjkyMjEzfQ.507sRu--Uobi2SvvY2lLVh6mMVS5PxJUgcBoMrp9cPs
+Content-Type: application/json
+
+{
+    "name": "Unauthorized Manager Update"
+}
+
+
+### ==========================================
+### TEST 14 — IT MANAGER DELETE USER
+### Expected: 403 Forbidden
+### ==========================================
+
+DELETE http://localhost:5000/api/users/6a9befe5cf1bdbae2e937998
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWViNGNmMWJkYmFlMmU5Mzc5OTYiLCJyb2xlIjoiSVQgTWFuYWdlciIsImlhdCI6MTc4ODYwNTgxMywiZXhwIjoxNzg4NjkyMjEzfQ.507sRu--Uobi2SvvY2lLVh6mMVS5PxJUgcBoMrp9cPs
+```http
+### =========================================================
+### TEST 15 — TECHNICIAN CANNOT DELETE USER
+### Expected: 403 Forbidden
+### =========================================================
+
+DELETE http://localhost:5000/api/users/6a9beeb4cf1bdbae2e937996
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWY0M2NmMWJkYmFlMmU5Mzc5OTciLCJyb2xlIjoiVGVjaG5pY2lhbiIsImlhdCI6MTc4ODYwNjI2MSwiZXhwIjoxNzg4NjkyNjYxfQ.B1a6pi9ADLhB9hS_velebi5xf_bfdTEqlmOra4gBjVg
+
+
+### =========================================================
+### TEST 16 — EMPLOYEE CANNOT DELETE USER
+### Expected: 403 Forbidden
+### =========================================================
+
+DELETE http://localhost:5000/api/users/USER_ID
+Authorization: Bearer YOUR_EMPLOYEE_TOKEN
+
+
+### =========================================================
+### TEST 17 — ASSET MANAGER CANNOT DELETE USER
+### Expected: 403 Forbidden
+### =========================================================
+
+DELETE http://localhost:5000/api/users/USER_ID
+Authorization: Bearer YOUR_ASSET_MANAGER_TOKEN
+
+
+### =========================================================
+### TEST 18 — SYSTEM ADMIN CAN DELETE USER
+### Expected: 200 OK
+### =========================================================
+### IMPORTANT:
+### Use the ID of a TEST USER that you are okay deleting.
+### Do NOT delete your main System Admin account.
+
+DELETE http://localhost:5000/api/users/TEST_USER_ID
+Authorization: Bearer YOUR_SYSTEM_ADMIN_TOKEN
+
+
+### =========================================================
+### TEST 19 — EMPLOYEE CANNOT GET USER BY ID
+### Expected: 403 Forbidden
+### =========================================================
+
+GET http://localhost:5000/api/users/6a9beeb4cf1bdbae2e937996
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTliZWZlNWNmMWJkYmFlMmU5Mzc5OTgiLCJyb2xlIjoiRW1wbG95ZWUiLCJpYXQiOjE3ODg2MDYxNjIsImV4cCI6MTc4ODY5MjU2Mn0._JXP-UxLUFN7o8U3Pv5NVfNVwRvatLCuNg9n4eI_Ymo
+
+
+### =========================================================
+### TEST 20 — TECHNICIAN CANNOT GET USER BY ID
+### Expected: 403 Forbidden
+### =========================================================
+
+GET http://localhost:5000/api/users/USER_ID
+Authorization: Bearer YOUR_TECHNICIAN_TOKEN
+
+
+### =========================================================
+### TEST 21 — ASSET MANAGER CANNOT GET USER BY ID
+### Expected: 403 Forbidden
+### =========================================================
+
+GET http://localhost:5000/api/users/USER_ID
+Authorization: Bearer YOUR_ASSET_MANAGER_TOKEN
+
+
+### =========================================================
+### TEST 22 — IT MANAGER CAN GET USER BY ID
+### Expected: 200 OK
+### =========================================================
+
+GET http://localhost:5000/api/users/USER_ID
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+
+### =========================================================
+### TEST 23 — SYSTEM ADMIN CAN GET USER BY ID
+### Expected: 200 OK
+### =========================================================
+
+GET http://localhost:5000/api/users/USER_ID
+Authorization: Bearer YOUR_SYSTEM_ADMIN_TOKEN
+
+
+### =========================================================
+### TEST 24 — NO TOKEN: GET USER BY ID
+### Expected: 401 Unauthorized
+### =========================================================
+
+GET http://localhost:5000/api/users/USER_ID
+
+
+### =========================================================
+### TEST 25 — NO TOKEN: UPDATE PROFILE
+### Expected: 401 Unauthorized
+### =========================================================
+
+PUT http://localhost:5000/api/users/profile
+Content-Type: application/json
+
+{
+    "name": "Unauthorized User"
+}
+
+
+### =========================================================
+### TEST 26 — NO TOKEN: DELETE USER
+### Expected: 401 Unauthorized
+### =========================================================
+
+DELETE http://localhost:5000/api/users/USER_ID
+```

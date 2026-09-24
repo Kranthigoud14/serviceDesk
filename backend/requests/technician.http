@@ -1,0 +1,120 @@
+### ==========================================
+### 1. LOGIN AS TECHNICIAN
+### ==========================================
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "technician@example.com",
+    "password": "123456"
+}
+
+### Copy token
+### Replace YOUR_TECHNICIAN_TOKEN below
+
+
+### ==========================================
+### 2. TECHNICIAN SUBMITS OWN SKILLS
+### ==========================================
+
+PUT http://localhost:5000/api/technicians/me/skills
+Content-Type: application/json
+Authorization: Bearer YOUR_TECHNICIAN_TOKEN
+
+{
+    "skills": [
+        "Network",
+        "Hardware",
+        "Software"
+    ]
+}
+
+
+### ==========================================
+### 3. LOGIN AS IT MANAGER
+### ==========================================
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "itmanager@example.com",
+    "password": "123456"
+}
+
+### Copy token
+### Replace YOUR_IT_MANAGER_TOKEN below
+
+
+### ==========================================
+### 4. VIEW ALL TECHNICIANS
+### ==========================================
+
+GET http://localhost:5000/api/technicians
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+
+### ==========================================
+### 5. VIEW TECHNICIAN BY ID
+### ==========================================
+
+GET http://localhost:5000/api/technicians/TECHNICIAN_ID
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+
+### ==========================================
+### 6. IT MANAGER VERIFIES TECHNICIAN SKILLS
+### ==========================================
+
+PUT http://localhost:5000/api/technicians/TECHNICIAN_ID/skills/verify
+Content-Type: application/json
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+
+### ==========================================
+### 7. SET TECHNICIAN AVAILABLE
+### ==========================================
+
+PUT http://localhost:5000/api/technicians/TECHNICIAN_ID/availability
+Content-Type: application/json
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+{
+    "availability": "Available"
+}
+
+
+### ==========================================
+### 8. SET TECHNICIAN CAPACITY
+### ==========================================
+
+PUT http://localhost:5000/api/technicians/TECHNICIAN_ID/capacity
+Content-Type: application/json
+Authorization: Bearer YOUR_IT_MANAGER_TOKEN
+
+{
+    "maxActiveTickets": 5
+}
+
+
+### ==========================================
+### 9. TECHNICIAN UPDATES SKILLS AGAIN
+### ==========================================
+
+PUT http://localhost:5000/api/technicians/me/skills
+Content-Type: application/json
+Authorization: Bearer YOUR_TECHNICIAN_TOKEN
+
+{
+    "skills": [
+        "Network",
+        "Hardware",
+        "Windows",
+        "Printer"
+    ]
+}
+
+### IMPORTANT:
+### skillsVerified automatically becomes false again.
+### IT Manager must verify the skills again.
