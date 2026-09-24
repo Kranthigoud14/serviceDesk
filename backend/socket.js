@@ -3,9 +3,14 @@ const { Server } = require("socket.io");
 let io;
 
 const initializeSocket = (server) => {
+  const allowedOrigins = (process.env.FRONTEND_URL || "https://service-desk-umber.vercel.app,http://localhost:5173")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
   io = new Server(server, {
     cors: {
-      origin: "*",
+      origin: allowedOrigins,
       methods: ["GET", "POST", "PUT", "DELETE"],
     },
   });
