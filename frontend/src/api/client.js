@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://servicedesk-dn8q.onrender.com/api';
+const configuredApiUrl = import.meta.env.VITE_API_URL;
+const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const isLocalApiUrl = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(configuredApiUrl || '');
+const API_BASE_URL = configuredApiUrl && (isLocalHost || !isLocalApiUrl)
+  ? configuredApiUrl
+  : 'https://servicedesk-dn8q.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

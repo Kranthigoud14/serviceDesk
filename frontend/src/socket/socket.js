@@ -1,6 +1,11 @@
 ﻿import { io } from 'socket.io-client';
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'https://servicedesk-dn8q.onrender.com';
+const configuredSocketUrl = import.meta.env.VITE_SOCKET_URL;
+const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const isLocalSocketUrl = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(configuredSocketUrl || '');
+const SOCKET_URL = configuredSocketUrl && (isLocalHost || !isLocalSocketUrl)
+  ? configuredSocketUrl
+  : 'https://servicedesk-dn8q.onrender.com';
 
 class SocketService {
   constructor() {
