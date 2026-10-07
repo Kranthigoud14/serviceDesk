@@ -77,7 +77,7 @@ const updateUserName = async (req, res) => {
          * Only System Admin can update another user's name.
          */
         if (req.params.id) {
-            const isSystemAdmin = req.user.role === "System Admin";
+            const isSystemAdmin = req.user.role === "System Admin" || req.user.role === "Admin";
 
             if (!isSystemAdmin) {
                 return res.status(403).json({

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 import Input from '../../components/common/Input';
@@ -21,6 +21,7 @@ const ROLES = [
   { value: 'Technician', label: 'Technician (Field Engineer)' },
   { value: 'IT Manager', label: 'IT Manager (Supervisor)' },
   { value: 'Asset Manager', label: 'Asset Manager (Hardware Ops)' },
+  { value: 'System Admin', label: 'System Admin (Platform Administrator)' },
 ];
 
 export default function RegisterPage() {

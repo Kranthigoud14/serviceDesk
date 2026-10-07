@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useAuthStore } from '../../store/authStore';
 import AdminDashboard from './AdminDashboard';
 import ManagerDashboard from './ManagerDashboard';
@@ -11,6 +11,7 @@ export default function DashboardRouter() {
 
   switch (user?.role) {
     case 'System Admin':
+    case 'Admin':
       return <AdminDashboard />;
     case 'IT Manager':
       return <ManagerDashboard />;

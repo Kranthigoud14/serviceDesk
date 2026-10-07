@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 
@@ -19,7 +19,7 @@ export default function RoleRoute({ allowedRoles = [], children }) {
   }
 
   // System Admin always bypasses role restrictions
-  if (user?.role === 'System Admin') {
+  if (user?.role === 'System Admin' || user?.role === 'Admin') {
     return children;
   }
 

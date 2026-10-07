@@ -13,7 +13,7 @@ const authorize = (...roles) => {
         }
 
         // System Admin has full access
-        if (req.user.role === "System Admin") {
+        if (req.user.role === "System Admin" || req.user.role === "Admin") {
             return next();
         }
 
